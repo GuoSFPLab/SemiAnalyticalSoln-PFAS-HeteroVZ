@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # run simulations (Not required if results alread exist)
-# run_simulation("input/model_setup.txt", "input/soil_properties.csv", "input/pfas_parameters.csv")
+run_simulation("input/model_setup.txt", "input/soil_properties.csv", "input/pfas_parameters.csv")
 
 # read results from output file and plot the results 
 setup = read_data("input/model_setup.txt")
