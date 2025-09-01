@@ -286,7 +286,7 @@ def analytical_solution(setup, soil, pfas):
             Sims = Rim/dt + Kp_ims + mu_ims 
             if setup['SWI_sites'] !=  0: 
                 Sims += R_sw_ims * A_sw_ims / (1+dt*B_sw_ims) 
-            if setup['SWI_sites'] !=  0: 
+            if setup['AWI_sites'] !=  0: 
                 Sims += R_aw_ims * A_aw_ims / (1+dt*B_aw_ims)   
         if wim > 0 and wim < 1:
             Jac[idx] += (Kp_fim * (Sims - Kp_ims) / Sims).sum()
@@ -338,6 +338,7 @@ def analytical_solution(setup, soil, pfas):
                     c0_im_sw = c0_im_sw*(1/(1+dt*B_sw_ims)) + c0_ims*((dt*A_sw_ims)/(1+dt*B_sw_ims)) # update kenitic SWI conc
                 if setup['AWI_sites'] !=  0:    
                     c0_ims += ( c0_im_aw*((R_aw_ims*B_aw_ims)/(1+dt*B_aw_ims)) ) / Sims
+                    c0_im_sw = c0_im_sw*(1/(1+dt*B_sw_ims)) + c0_ims*((dt*A_sw_ims)/(1+dt*B_sw_ims)) # update kenitic SWI conc
                     c0_im_aw = c0_im_aw*(1/(1+dt*B_aw_ims)) + c0_ims*((dt*A_aw_ims)/(1+dt*B_aw_ims)) # update kenitic AWI conc
             # store results
             time.append(t * (L/v_f)/year)
