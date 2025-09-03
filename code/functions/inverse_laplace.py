@@ -13,16 +13,16 @@ def base_fun(X, s, dT, cin, param, setup):
     H  = s*Rf + mu_f
     if setup['perm_domain'] == 1:
         gsi = s*Rim + Kp_ims + mu_ims
-        if setup['SWI_sites'] !=  0: 
+        if setup['f_SWI_sites'] !=  0: 
             gsi += s*(R_sw_ims*A_sw_ims)/(s+B_sw_ims) 
-        if setup['AWI_sites'] !=  0:
+        if setup['f_AWI_sites'] !=  0:
             gsi += s*(R_aw_ims*A_aw_ims)/(s+B_aw_ims)    
         H += np.sum( Kp_fim * (gsi-Kp_ims) / gsi , axis = 1).reshape(-1,1)
         
-    if setup['SWI_sites'] !=  0: 
+    if setup['f_SWI_sites'] !=  0: 
         H += np.sum((s*R_sw_f*A_sw_f)/(s+B_sw_f), axis = 1).reshape(-1,1)
         
-    if setup['AWI_sites'] !=  0: 
+    if setup['f_AWI_sites'] !=  0: 
         H += np.sum((s*R_aw_f*A_aw_f)/(s+B_aw_f), axis = 1).reshape(-1,1)
 
     A = Pe_f/2*(1-np.sqrt(1+4*H/Pe_f))

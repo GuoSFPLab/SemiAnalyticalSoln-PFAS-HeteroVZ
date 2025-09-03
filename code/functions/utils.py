@@ -1,39 +1,39 @@
 import pandas as pd
-from .solutions import analytical_solution, semi_analytical_solution
+from .solutions import SinglePoro_DualPoro, DualPerm_TriPoro
 
-def run_simulation(setupfile, soilfile, pfasfile):
-    setup = read_data(setupfile)
-    soil  = read_data(soilfile)
-    pfas  = read_data(pfasfile)
+def run_simulation(filenames):
+    setup = read_data(filenames[0])
+    soil  = read_data(filenames[1])
+    pfas  = read_data(filenames[2])
     
     checks = {
                 0: {
-                    "msg": "Running single porosity model...\n",
-                    "end": "Finish single porosity simulation!!!!!!",
+                    "msg": "Running single-porosity model...\n",
+                    "end": "Finish single-porosity simulation!\n",
                     "valid": lambda s: s['f_w'] == 1.0,
                     "error": "Invalid f_w, f_w != 1",
-                    "solution": analytical_solution
+                    "solution": SinglePoro_DualPoro
                 },
                 1: {
-                    "msg": "Running dual porosity model...\n",
-                    "end": "Finish dual porosity simulation!!!!!!",
+                    "msg": "Running dual-porosity model...\n",
+                    "end": "Finish dual-porosity simulation!\n",
                     "valid": lambda s: s['f_w'] + s['im_w'] == 1.0,
                     "error": "Invalid f_w or im_w, f_w + im_w != 1",
-                    "solution": analytical_solution
+                    "solution": SinglePoro_DualPoro
                 },
                 2: {
-                    "msg": "Running dual permeability model...\n",
-                    "end": "Finish dual permeability simulation!!!!!!",
+                    "msg": "Running dual-permeability model...\n",
+                    "end": "Finish dual-permeability simulation!\n",
                     "valid": lambda s: s['f_w'] + s['m_w'] == 1.0,
                     "error": "Invalid f_w or m_w, f_w + m_w != 1",
-                    "solution": semi_analytical_solution
+                    "solution": DualPerm_TriPoro
                 },
                 3: {
-                    "msg": "Running triple porosity model...\n",
-                    "end": "Finish triple porosity simulation!!!!!!",
+                    "msg": "Running triple-porosity model...\n",
+                    "end": "Finish triple-porosity simulation!\n",
                     "valid": lambda s: s['f_w'] + s['m_w'] + s['im_w'] == 1.0,
                     "error": "Invalid f_w or m_w or im_w, f_w + m_w + im_w != 1",
-                    "solution": semi_analytical_solution
+                    "solution": DualPerm_TriPoro
                 }
             }   
     
