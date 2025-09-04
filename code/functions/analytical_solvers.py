@@ -4,7 +4,7 @@ import math
 ##################################################################################################
 ##################################################################################################
 ##################################################################################################
-#################################### Inverse Lapalce Transform ###################################
+#################################### Inverse Laplace Transform ###################################
 ##################################################################################################
 ##################################################################################################
 ##################################################################################################
@@ -116,7 +116,7 @@ def QE_method(t, X, dT, T, cin, param, setup, a, NSUM, accelerate):
 ##################################################################################################
 ##################################################################################################
 ##################################################################################################
-# get concenration in time domain
+# get concentration in the time domain
 def fcfun0(X, gsi, c0, rs):# Define a symbolic variable
     fc = np.array(rs)*0.0
     return fc
@@ -127,7 +127,7 @@ def fcfun(X, gsi, c0, rs):# Define a symbolic variable
     return fc
 
 def base_fun_TP(s, X, dT, cin, param, setup):
-    # get all functional values with repsect to s
+    # get all functional values with respect to s
     ## hf & hm function in the first advective domain
     [Rf,  Pe_f, mu_f, Kp_fm, 
      R_sw_f, A_sw_f, B_sw_f, R_aw_f,A_aw_f, B_aw_f, 
@@ -224,7 +224,7 @@ def base_fun_TP(s, X, dT, cin, param, setup):
     F = np.linalg.solve(jac, b)
 
 
-    ## get coeficients for solving boundary concentration
+    ## get coefficients for solving boundary concentration
     gs_adv = np.ones(s.shape)
     gs1i_c1i0_inf = fcfun(1e10, gsi, 0, rs)
     gs2i_c2i0_inf = fcfun(1e10, gsi, 0, rs)

@@ -1,10 +1,8 @@
 """
 This script runs a PFAS transport simulation in homogeneous and heterogeneous vadose zones 
-based on provided model setup, soil properties, and PFAS parameters. It then reads the 
+based on the provided model setup, soil properties, and PFAS parameters. It then reads the 
 breakthrough curves from the output CSV file and plots the normalized concentration versus time.
-Both analytical and numerical solutions are available.
-
-Four models are available: 
+Both analytical and numerical solutions are available for the following four model complexities: 
       (1) Single-porosity model,
       (2) Dual-porosity model [Note: L/v_f (instead of L/v_ave) is used for nondimensionalization.],
       (3) Dual-permeability model,
@@ -12,8 +10,8 @@ Four models are available:
       
 Two example cases are provided: (1) A dual-porosity case, & (2) A triple-porosity case. Users can customize 
 the input files in the "input" folder for their simulations. However, they may adjust "IL_a" & "IL_Nsum" 
-in the "model_setup*.txt" to reduce numerical intergration errors of the semi-analytical solutions, or 
-increase "dt_num" & "dx_num" in the same file to reduce discretization erros of the numerical solutions.
+in the "model_setup*.txt" to reduce numerical integration errors of the semi-analytical solutions, or 
+increase "dt_num" & "dx_num" in the same file to reduce discretization errors of the numerical solutions.
 
 Author: Sidian Chen (Phd @University of Arizona, now postdoc @Stanford University)
 Email: sidianc@stanford.edu
@@ -33,7 +31,7 @@ import glob
 # input & output folders
 input_folder, output_folder = 'input', 'output'
 
-# run the two exmaple cases
+# run the two example cases
 for casename, msg in [("DualPoro",   "Case 1: Dual-porosity model"),
                       ("TriplePoro", "Case 2: Triple-porosity model")]:
     # print casename
@@ -48,7 +46,7 @@ for casename, msg in [("DualPoro",   "Case 1: Dual-porosity model"),
                  glob.glob(f"{input_folder}/*soil_properties*{casename}*.csv")[0], 
                  glob.glob(f"{input_folder}/*pfas_parameters*.csv")[0]]
     
-    # run simulations (Not required if results alread exist)
+    # run simulations (Not required if results already exist)
     run_simulation(filenames)
     
     # read results from output file and plot the results 

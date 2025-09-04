@@ -8,12 +8,12 @@ from .numerical_solvers import num_SinglePoroDualPoro, num_DualPermTriPoro
 ##################################################################################################
 ##################################################################################################
 ##################################################################################################
-##################################### Supplementary funtions #####################################
+##################################### Supplementary functions #####################################
 ##################################################################################################
 ##################################################################################################
 ##################################################################################################
 def Aaw_func_thermo(sigma0,poro,alpha,n,th,thr,ths,sf):
-    #Computing air-water interfacial area using the thermodynamic approach
+    # Computing air-water interfacial area using the thermodynamic approach
     # Aaw       air-water interfacial area (cm^2/cm^3)
     # sigma0    surface tension (dyn/cm)
     # poro      porosity (-)
@@ -151,11 +151,11 @@ def SinglePoro_DualPoro(setup, soil, pfas):
     theta_f = soil['f_theta_r'] + (soil['f_theta_s'] - soil['f_theta_r'])*se_f
     Aaw_f = Aaw_func_thermo(sigma0, poro_f, soil['f_alpha_VG'], n_vg_f, theta_f, soil['f_theta_r'], soil['f_theta_s'], soil['f_sf'])
     v_f =  I0/theta_f/day # cm/day -> cm/s
-    # Note: Here  L/v_f is used for the nondimenionalization, instead of v_ave as reported in the publication.
+    # Note: Here  L/v_f is used for the nondimensionalization, instead of v_ave as reported in the publication.
     Pe_f = v_f*L / (v_f * alphaL_f + tau_f * D0) 
     
     
-    # fracture - redardation factor
+    # fracture - retardation factor
     Rf = np.array([1+Faw_f*Aaw_f*Kaw/theta_f + Fsw_f*kd_f*rhob_f/theta_f])
     # fracture - solid-water interface
     if setup['f_SWI_sites'] != 2:
@@ -389,10 +389,9 @@ def DualPerm_TriPoro(setup, soil, pfas):
     theta_f = thetar_f + (thetas_f - thetar_f)*se_f
     Aaw_f = Aaw_func_thermo(sigma0, poro_f, alpha_vg_f, n_vg_f, theta_f, thetar_f, thetas_f, soil['f_sf'])
     v_f =  se_f**0.5 * (1 - (1 - se_f**(1/m_vg_f))**m_vg_f)**2 * soil['f_ksat']/theta_f/day # cm/day -> cm/s
-    # Note: Here  L/v_f is used for the nondimenionalization, instead of v_ave as reported in the publication.
     Pe_f = v_f*L / (v_f * alphaL_f + tau_f * D0) 
     
-    # fracture - redardation factor
+    # fracture - retardation factor
     Rf = np.array([1+Faw_f*Aaw_f*Kaw/theta_f + Fsw_f*kd_f*rhob_f/theta_f])
     
     # fracture - solid-water interface
@@ -428,10 +427,9 @@ def DualPerm_TriPoro(setup, soil, pfas):
     theta_m = thetar_m + (thetas_m - thetar_m)*se_m
     Aaw_m = Aaw_func_thermo(sigma0, poro_m, alpha_vg_m, n_vg_m, theta_m, thetar_m, thetas_m, soil['m_sf'])
     v_m =  se_m**0.5 * (1 - (1 - se_m**(1/m_vg_m))**m_vg_m)**2 * soil['m_ksat']/theta_m/day # cm/day -> cm/s
-    # Note: Here  L/v_f is used for the nondimenionalization, instead of v_ave as reported in the publication.
     Pe_m = v_m*L / (v_m * alphaL_m + tau_m * D0) 
     
-    # mobile matrix - redardation factor
+    # mobile matrix - retardation factor
     Rm = np.array([1+Faw_m*Aaw_m*Kaw/theta_m + Fsw_m*kd_m*rhob_m/theta_m])
     # mobile matrix - solid-water interface
     if setup['m_SWI_sites'] != 2:

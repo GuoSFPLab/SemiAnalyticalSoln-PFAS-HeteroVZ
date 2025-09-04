@@ -20,5 +20,5 @@
 30,      T,              [run time in pore volume]
 1e4,     dt_num,         [number of time steps for analytical & numerical solutions]
 200,     dx_num,         [number of grids for numerical solution]
-1e-2,    IL_a,           [an arbitrary number used for inverse Lapalce transform - see Durbin (1974); Crump (1976); De Hoog et al (1982)]
-10,      IL_Nsum,        [number of terms in the Fourier series for inverse Lapalce transform - see Durbin (1974); Crump (1976); De Hoog et al (1982)]
+1e-2,    IL_a,           [an arbitrary number used for inverse Laplace transform - see Durbin (1974); Crump (1976); De Hoog et al (1982)]
+10,      IL_Nsum,        [number of terms in the Fourier series for inverse Laplace transform - see Durbin (1974); Crump (1976); De Hoog et al (1982)]

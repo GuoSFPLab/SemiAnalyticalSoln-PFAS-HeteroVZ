@@ -36,4 +36,4 @@
 0,       im_x0,        [-] im_sf <= 0 -> Aaw = x2*sw^2+x1*sw+x0, (I9),   (immobile matrix)
 0,       im_x1,        [-] im_sf <= 0 -> Aaw = x2*sw^2+x1*sw+x0, (I10),  (immobile matrix)
 0,       im_x2,        [-] im_sf <= 0 -> Aaw = x2*sw^2+x1*sw+x0, (I11),  (immobile matrix)
--30,     GuessPc,      [cm],                                     For dual permability and triple prosity models
+-30,     GuessPc,      [cm],                                     For dual permeability and triple porosity models
