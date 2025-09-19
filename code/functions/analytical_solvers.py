@@ -242,7 +242,8 @@ def base_fun_TP(s, X, dT, cin, param, setup):
     c1_in = cin
     c2_in = cin
     
-    ## solve boundary concentration
+    ## solve boundary concentration 
+    # (Note: For simplicity, we replace the infinite boundary condition by a zero gradient at the outlet of a finite domain.)
     LTc1_in = c1_in / s * (1-np.exp(-dT*s))
     LTc2_in = c2_in / s * (1-np.exp(-dT*s))
 
